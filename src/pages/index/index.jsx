@@ -1,10 +1,13 @@
+import React from 'react'//不知顶层界面到底如何渲染，先从已有的界面写
+import Tetris from '../../components/Tetris'
 import { Component } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View, Text ,Swiper,SwiperItem,Image} from '@tarojs/components'
 import './index.scss'
+
 
 export default class Index extends Component {
 
-  componentWillMount () { }
+  /*componentWillMount () { }
 
   componentDidMount () { }
 
@@ -12,12 +15,15 @@ export default class Index extends Component {
 
   componentDidShow () { }
 
-  componentDidHide () { }
+  componentDidHide () { }*/
 
   render () {
     return (
-      <View className='index'>
+      <View className='app'>
         <Text>Hello world!</Text>
+        <View className='Tetris'>
+          <Tetris/>
+        </View>
       </View>
     )
   }
