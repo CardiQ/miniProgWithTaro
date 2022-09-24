@@ -1,0 +1,10 @@
+//本项目仅设置全局样式；因为有字体导入，若设置组件样式导入将非常麻烦
+body{
+    margin:0//边界设置为0
+}
+
+@font-face {
+    font-family: 'Pixel';
+    src: url('../../font/Pixel-LCD-7.woff')format('woff');
+}
+

@@ -20,7 +20,6 @@ export default class Index extends Component {
   render () {
     return (
       <View className='app'>
-        <Text>Hello world!</Text>
         <View className='Tetris'>
           <Tetris/>
         </View>

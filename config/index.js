@@ -24,6 +24,16 @@ const config = {
     enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
   },
   mini: {
+    webpackChain(chain, webpack) {
+      // linaria/loader 选项详见 https://github.com/callstack/linaria/blob/master/docs/BUNDLERS_INTEGRATION.md#webpack
+      chain.module
+        .rule('script')
+        .use('linariaLoader')
+        .loader('linaria/loader')
+        .options({
+          sourceMap: process.env.NODE_ENV !== 'production',
+        })
+    },
     postcss: {
       pxtransform: {
         enable: true,
@@ -47,6 +57,15 @@ const config = {
     }
   },
   h5: {
+    webpackChain(chain, webpack) {
+      chain.module
+        .rule('script')
+        .use('linariaLoader')
+        .loader('linaria/loader')
+        .options({
+          sourceMap: process.env.NODE_ENV !== 'production',
+        })
+    },
     publicPath: '/',
     staticDirectory: 'static',
     postcss: {
