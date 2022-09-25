@@ -5,9 +5,9 @@ import {styled} from 'linaria/react';
 export const StyledStage = styled(View)`
     display:grid;
     grid-template-rows:repeat(
-        ${proops=>proops.height},calc(100vw/${proops=>proops.height})
+        ${props=>props.height},calc(100vw/${props=>props.height})
     );
-    grid-template-columns:repeat(${proops=>proops.width},1fr);
+    grid-template-columns:repeat(${props=>props.width},1fr);
     grid-gap:1px;
     border:8px solid #87CEFA;
     width:100%;
