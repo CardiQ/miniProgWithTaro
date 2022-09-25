@@ -14,7 +14,7 @@ export const useStage = (player,resetplayers)=>{
             })*/
             const newStage=[]
             prevStage.forEach((row,y)=>{
-                newStage[player.pos.y+y]=prevStage[player.pos.y+y].map(cell=>(cell[1]==='clear'?[0,'clear']:cell))
+                newStage[y]=prevStage[y].map(cell=>(cell[1]==='clear'?[0,'clear']:cell))
                 row.forEach((cell,x)=>{
                     cell[1]==='clear'?[0,'clear']:cell
                 })

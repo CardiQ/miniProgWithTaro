@@ -17,7 +17,7 @@ export const usePlayer = ()=>{//有use前缀react才知此为自定义hook
             pos:{x:(prevstate.pos.x+=x),y:(prevstate.pos.y+=y)},
             collided
         }))
-        console.log(player)
+        console.log('nowy'+y)
     }
 
     const resetPlayer = useCallback(()=>{
