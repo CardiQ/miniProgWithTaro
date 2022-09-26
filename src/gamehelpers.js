@@ -6,3 +6,19 @@ export const createStage=()=>(
         new Array(STAGE_WIDTH).fill([0,'clear'])//0在web意味nothing，clear意味着清除
     ))
 )
+
+export const checkCollision = ( player, stage, {x:movex,y:movey} )=>{
+    for(let j=0;j<player.tetromino.length;j+=1){
+        for(let i=0;i<player.tetromino[j].length;i+=1){
+            if(player.tetromino[j][i]!==0){
+                if(
+                    !stage[j+player.pos.y+movey]||
+                    !stage[j+player.pos.y+movey][i+player.pos.x+movex]||//不出、不碰，undefined或不为0
+                    stage[j+player.pos.y+movey][i+player.pos.x+movex][1]!=='clear'//不合并?分开看0和clear
+                ){
+                    return true;
+                }
+            }
+        }
+    }
+}

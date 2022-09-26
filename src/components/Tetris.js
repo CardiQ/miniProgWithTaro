@@ -9,7 +9,7 @@ import Display from './Display'
 import StartButtonn from './StartButton'
 
 //StyledComponents&helpers
-import {createStage} from "../gamehelpers"
+import {checkCollision, createStage} from "../gamehelpers"
 import{StyledTetrisWrapper,StyledTetris}from './styles/StyledTetris'
 
 //Hoooks
@@ -28,7 +28,8 @@ const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻�
 
     //function
     const movePlayer = dir=>{
-        updatePlayerPos({x:dir,y:0})
+        if(!checkCollision(player,stage,{x:dir,y:0})){
+        updatePlayerPos({x:dir,y:0})}
     }
 
     const startGame = ()=>{

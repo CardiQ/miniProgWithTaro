@@ -1,7 +1,8 @@
 import React from 'react'
 //import {useState,useEffect} from 'react'
 import { useEffect, useLayoutEffect, useReducer, useState, useContext, useRef, useCallback, useMemo } from 'react'
-import {createStage} from '../gamehelpers'
+import {createStage,checkCollision} from '../gamehelpers'
+import {resetPlayer} from './usePlayer'
 
 export const useStage = (player,resetplayers)=>{
     const [stage,setStage]=useState(createStage())
@@ -34,12 +35,15 @@ export const useStage = (player,resetplayers)=>{
                     }
                 })
             })
+            if(player.collided){
+                resetPlayer()//合并的情况，reset
+            }
             return newStage
         }
 
         setStage(prev=>updateStage(prev))
 
-    },[player.collided,player.pos.x,player.pos.y,player.tetromino])//依赖项参数表
+    },[player,resetPlayer])//依赖项参数表
 
     return [stage,setStage]
 }
