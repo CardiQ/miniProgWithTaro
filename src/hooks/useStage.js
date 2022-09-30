@@ -16,9 +16,9 @@ export const useStage = (player,resetPlayer)=>{
             const newStage=[]
             prevStage.forEach((row,y)=>{
                 newStage[y]=prevStage[y].map(cell=>(cell[1]==='clear'?[0,'clear']:cell))
-                row.forEach((cell,x)=>{
+                /*row.forEach((cell,x)=>{
                     cell[1]==='clear'?[0,'clear']:cell
-                })
+                })*/
             })//刷新，按clear'，一切变化在用户操作之前
             //draw
             player.tetromino.forEach((row,y)=>{//遍历player中的元素：俄罗斯方块形状；该player由useStage传入

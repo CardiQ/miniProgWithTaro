@@ -66,7 +66,7 @@ const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻�
             }else if(num==5){//下
                 dropPlaer()
             }else if(num==3){
-                playerRotate(1)//顺时针
+                playerRotate(stage,1)//顺时针
             }
         }
     }
@@ -76,8 +76,6 @@ const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻�
     const fbtn3=()=>{move(3)};
     const fbtn4=()=>{move(4)};
     const fbtn5=()=>{move(5)};
-
-    console.log('render again')
     
     return (//样式布局做好后添加props控制动作;wrapper另外的作用为覆盖整个页面使按键可以被监听
         <StyledTetrisWrapper>

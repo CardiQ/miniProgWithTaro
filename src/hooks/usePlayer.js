@@ -11,8 +11,9 @@ export const usePlayer = ()=>{//有use前缀react才知此为自定义hook
         collided:false
     })
 
+    //核心
     const rotate = (matrix,dir)=>{
-        const rotateTetro = matrix.map((nouse,index)=>
+        const rotateTetro = matrix.map((_,index)=>
             matrix.map(col=>col[index]))
         
         if(dir>0)//顺时针
@@ -20,7 +21,7 @@ export const usePlayer = ()=>{//有use前缀react才知此为自定义hook
         return rotateTetro.reverse()
     }
 
-    const playerRotate = (dir)=>{
+    const playerRotate = (stage,dir)=>{
         const clonePlayer = JSON.parse(JSON.stringify(player))//深拷贝，分离状态
         clonePlayer.tetromino = rotate(clonePlayer.tetromino,dir)
 
@@ -29,7 +30,7 @@ export const usePlayer = ()=>{//有use前缀react才知此为自定义hook
         let offset = 1
         while(checkCollision(clonePlayer,stage,{x:0,y:0})){
             clonePlayer.pos.x+=offset
-            offset = -(offset+(offset>0?1:-1))
+            offset = -(offset+(dir>0?1:-1))
             if(offset>clonePlayer.tetromino[0].length){
                 rotate(clonePlayer.tetromino,-dir)//退回旋转
                 clonePlayer.pos.x = pos//退回位置
