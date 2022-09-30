@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect, useReducer, useState, useContext, useRef, u
 import {createStage,checkCollision} from '../gamehelpers'
 import {resetPlayer} from './usePlayer'
 
-export const useStage = (player,resetplayers)=>{
+export const useStage = (player,resetPlayer)=>{
     const [stage,setStage]=useState(createStage())
     
     useEffect(() => {
@@ -19,14 +19,10 @@ export const useStage = (player,resetplayers)=>{
                 row.forEach((cell,x)=>{
                     cell[1]==='clear'?[0,'clear']:cell
                 })
-            })//刷新，碰撞消除，一切变化在用户操作之前
+            })//刷新，按clear'，一切变化在用户操作之前
             //draw
-            //console.log(player.tetromino)
             player.tetromino.forEach((row,y)=>{//遍历player中的元素：俄罗斯方块形状；该player由useStage传入
-                //newStage[player.pos.y+y]=prevStage[player.pos.y+y].map(cell=>(cell[1]==='clear'?[0,'clear']:cell))
                 row.forEach((value,x)=>{
-                    //console.log(row)
-                    //console.log('y'+y+'x'+x)
                     if(value!==0){//不是0的任何字母,字母仅代表形状
                         newStage[player.pos.y+y][player.pos.x+x]=[
                             value,
@@ -36,7 +32,7 @@ export const useStage = (player,resetplayers)=>{
                 })
             })
             if(player.collided){
-                resetPlayer()//合并的情况，reset
+                resetPlayer();
             }
             return newStage
         }

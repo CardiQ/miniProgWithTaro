@@ -21,10 +21,10 @@ import './styles/StyledBtn.scss'
 
 const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻辑编写
     //state
-    const [dropTime,setDopTime]=useState(null)
+    const [dropTime,setDropTime]=useState(null)
     const [gameOver,setGameOver]=useState(false)
-    const [player,updatePlayerPos,resetPlayer]=usePlayer();
-    const [stage,setStage]=useStage(player);
+    const [player,updatePlayerPos,resetPlayer,playerRotate]=usePlayer();
+    const [stage,setStage]=useStage(player,resetPlayer);
 
     //function
     const movePlayer = dir=>{
@@ -36,10 +36,21 @@ const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻�
         //Reset everything
         setStage(createStage())
         resetPlayer()
+        setGameOver(false)
     }
 
     const drop = ()=>{
-        updatePlayerPos({x:0,y:1,collided:false})
+        if(!checkCollision(player,stage,{x:0,y:1})){
+            updatePlayerPos({x:0,y:1,collided:false})
+        }else{
+            if(player.pos.y<1){//仅游戏开始时为0，之后再检查
+                console.log("Game Over")
+                setGameOver(true)
+                setDropTime(null)//不再下降
+            }
+            updatePlayerPos({x:0,y:0,collided:true})//下降碰到就不动了
+        }
+        
     }
 
     const dropPlaer = ()=>{
@@ -54,6 +65,8 @@ const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻�
                 movePlayer(1)
             }else if(num==5){//下
                 dropPlaer()
+            }else if(num==3){
+                playerRotate(1)//顺时针
             }
         }
     }
@@ -64,8 +77,7 @@ const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻�
     const fbtn4=()=>{move(4)};
     const fbtn5=()=>{move(5)};
 
-    console.log(player)
-    console.log(stage)
+    console.log('render again')
     
     return (//样式布局做好后添加props控制动作;wrapper另外的作用为覆盖整个页面使按键可以被监听
         <StyledTetrisWrapper>
@@ -86,9 +98,9 @@ const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻�
             </StyledTetris>
             <div>
                 <div style="display: flex;flex-direction: row;align-items: center;">
-                    <button class='btn2' onClick={fbtn2}>LEFT</button>
-                    <button class='btn3' onClick={fbtn3}>ROTATE</button>
-                    <button class='btn4' onClick={fbtn4}>RIGHT</button>
+                    <button class='btn2' onClick={fbtn2}>L</button>
+                    <button class='btn3' onClick={fbtn3}>ROT</button>
+                    <button class='btn4' onClick={fbtn4}>R</button>
                 </div>
                 <button class='btn5' onClick={fbtn5}>DOWN</button>
             </div>

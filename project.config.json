@@ -1,15 +1,16 @@
 {
-  "miniprogramRoot": "./dist",
-  "projectname": "myApp",
-  "description": "Tetris",
-  "appid": "testAppId",
-  "setting": {
-    "urlCheck": true,
-    "es6": false,
-    "enhance": false,
-    "compileHotReLoad": false,
-    "postcss": false,
-    "minified": false
-  },
-  "compileType": "miniprogram"
+    "miniprogramRoot": "./dist",
+    "projectname": "myApp",
+    "description": "Tetris",
+    "appid": "testAppId",
+    "setting": {
+        "urlCheck": true,
+        "es6": false,
+        "enhance": false,
+        "compileHotReLoad": false,
+        "postcss": false,
+        "minified": false,
+        "autoCompile": false
+    },
+    "compileType": "miniprogram"
 }
