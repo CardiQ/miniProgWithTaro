@@ -10,7 +10,7 @@
         "compileHotReLoad": false,
         "postcss": false,
         "minified": false,
-        "autoCompile": false
+        "autoCompile": true
     },
     "compileType": "miniprogram"
 }

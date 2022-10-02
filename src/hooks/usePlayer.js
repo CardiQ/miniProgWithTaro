@@ -11,7 +11,7 @@ export const usePlayer = ()=>{//有use前缀react才知此为自定义hook
         collided:false
     })
 
-    //核心
+    //核心:rotate&playRotate
     const rotate = (matrix,dir)=>{
         const rotateTetro = matrix.map((_,index)=>
             matrix.map(col=>col[index]))
