@@ -61,5 +61,5 @@ export const useStage = (player,resetPlayer)=>{
 
     },[player,resetPlayer])//依赖项参数表
 
-    return [stage,setStage]
+    return [stage,setStage,clearState]
 }

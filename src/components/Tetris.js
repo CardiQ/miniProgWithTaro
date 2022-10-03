@@ -14,7 +14,8 @@ import{StyledTetrisWrapper,StyledTetris}from './styles/StyledTetris'
 
 //Hoooks
 import {usePlayer} from '../hooks/usePlayer'
-import{useStage}from '../hooks/useStage'
+import {useStage} from '../hooks/useStage'
+import {useInterval} from '../hooks/useInterval'
 
 //Styles
 import './styles/StyledBtn.scss'
@@ -24,7 +25,7 @@ const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻�
     const [dropTime,setDropTime]=useState(null)
     const [gameOver,setGameOver]=useState(false)
     const [player,updatePlayerPos,resetPlayer,playerRotate]=usePlayer();
-    const [stage,setStage]=useStage(player,resetPlayer);
+    const [stage,setStage,clearState]=useStage(player,resetPlayer);
 
     //function
     const movePlayer = dir=>{
@@ -35,6 +36,8 @@ const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻�
     const startGame = ()=>{
         //Reset everything
         setStage(createStage())
+        //set droptime
+        setDropTime(500)//0.5s
         resetPlayer()
         setGameOver(false)
     }
@@ -77,6 +80,11 @@ const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻�
     const fbtn4=()=>{move(4)};
     const fbtn5=()=>{move(5)};
     
+    //interval-incline function
+    useInterval(()=>{
+        drop()
+    },dropTime)//dropTime是null就停下
+
     return (//样式布局做好后添加props控制动作;wrapper另外的作用为覆盖整个页面使按键可以被监听
         <StyledTetrisWrapper>
             <StyledTetris>
