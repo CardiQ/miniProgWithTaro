@@ -2,6 +2,7 @@ import React from 'react'
 import { Component } from 'react'
 //import {useState} from 'react'
 import { useEffect, useLayoutEffect, useReducer, useState, useContext, useRef, useCallback, useMemo } from 'react'
+import {TETROMINOS} from '../tetromino'
 
 //Components
 import Stage from './Stage'
@@ -25,9 +26,9 @@ const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻�
     //state
     const [dropTime,setDropTime]=useState(null)
     const [gameOver,setGameOver]=useState(false)
-    const [player,updatePlayerPos,resetPlayer,playerRotate]=usePlayer()
+    const [player,setPlayer,updatePlayerPos,resetPlayer,playerRotate]=usePlayer()
     const [stage,setStage,clearState]=useStage(player,resetPlayer)
-    const [score,setScore,rows,setRows,level,setLevel]=useGameStatus(clearState)
+    const [top,score,setScore,rows,setRows,level,setLevel]=useGameStatus(clearState)
 
     //function
     const movePlayer = dir=>{
@@ -41,6 +42,21 @@ const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻�
         //set droptime
         setDropTime(1000)//1s
         resetPlayer()
+        setGameOver(false)
+
+        setScore(0)
+        setRows(0)
+        setLevel(0)
+    }
+
+    const quitGame = ()=>{
+        setStage(createStage())
+        setDropTime(null)
+        setPlayer({
+            pos:{x : 0,y : 0},
+            tetromino: (TETROMINOS[0]).shape,
+            collided:false
+        })
         setGameOver(false)
 
         setScore(0)
@@ -105,12 +121,19 @@ const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻�
                     <Display gameOver={gameOver} text="GameOver" />
                     ):(
                         <div>
+                        <Display text={"TopScore: "+top}/>
                         <Display text={"Score: "+score}/>
                         <Display text={`Rows: ${rows}`}/>
                         <Display text={`Level: ${level}`}/>
                         </div>
                     )}
-                    <StartButtonn callback={startGame}/>
+                {(dropTime==null)?(<StartButtonn callback={startGame} text="Start Game"/>
+                    ):(
+                        <div>
+                        <StartButtonn callback={startGame} text="Restart Game"/>
+                        <StartButtonn callback={quitGame} text="Quit Game"/>
+                        </div>
+                )}
                 </aside>
             </StyledTetris>
             <div>

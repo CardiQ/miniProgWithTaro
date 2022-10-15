@@ -5,12 +5,12 @@ import {StyledStartButton} from './styles/StyledStartButton'*/
 
 import './styles/StyledStartBtn.scss'
 
-const StartButton = ({callback})=>(//onClick为Button的特性
+const StartButton = ({callback,text})=>(//onClick为Button的特性
     /*<StyledStartButton onClick={callback}>
         Start Game
     </StyledStartButton>*/
     <button class='StyledStartButton' onClick={callback}>
-        Start Game
+        {text}
     </button>
 )
 

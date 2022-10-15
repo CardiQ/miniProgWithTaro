@@ -57,5 +57,5 @@ export const usePlayer = ()=>{//有use前缀react才知此为自定义hook
         })
     })
 
-    return [player,updatePlayerPos,resetPlayer,playerRotate];
+    return [player,setPlayer,updatePlayerPos,resetPlayer,playerRotate];
 }
