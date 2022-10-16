@@ -22,7 +22,7 @@ import {useGameStatus} from '../hooks/useGameStatus'
 //Styles
 import './styles/StyledBtn.scss'
 
-const Tetris = ()=>{//此处箭头函数使用花括号，因为内含更多逻辑编写
+const Tetris = ()=>{
     //state
     const [dropTime,setDropTime]=useState(null)
     const [gameOver,setGameOver]=useState(false)

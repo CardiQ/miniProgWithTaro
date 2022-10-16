@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect, useReducer, useState, useContext, useRef, u
 import { checkCollision, STAGE_WIDTH } from '../gamehelpers'
 import {TETROMINOS,randomTetromino} from '../tetromino'
 
-export const usePlayer = ()=>{//有use前缀react才知此为自定义hook
+export const usePlayer = ()=>{
     const [player,setPlayer]=useState({
         pos:{x : 0,y : 0},
         tetromino: (TETROMINOS[0]).shape,
@@ -43,7 +43,7 @@ export const usePlayer = ()=>{//有use前缀react才知此为自定义hook
 
     const updatePlayerPos = ({x,y,collided})=>{
         setPlayer(prevstate => ({
-            ...prevstate,//展开运算符之于对象：复制/合并
+            ...prevstate,
             pos:{x:(prevstate.pos.x+=x),y:(prevstate.pos.y+=y)},
             collided
         }))
